@@ -8,7 +8,19 @@ export const useScoreStore = defineStore('score', () => {
 
   // GETTERS
   const score = computed(() => {
-        
+    let sum = 0
+    for(let i=0; i<3; i++) {
+      for(let j=0; j<3; j++) {
+        let multiply = 0
+        for(let k=0; k<3; k++) {
+            if(boardValues.value[i][j] === boardValues.value[i][k]) {
+              multiply++
+            }
+        }
+        sum += boardValues.value[i][j] * multiply
+      }
+    }
+    return sum  
   })
 
   // ACTIONS
@@ -29,7 +41,6 @@ export const useScoreStore = defineStore('score', () => {
 }
 
 
-
-return { currentRoll, newRoll, addValue, boardValues }
+return { currentRoll, newRoll, addValue, boardValues, score }
 
 })

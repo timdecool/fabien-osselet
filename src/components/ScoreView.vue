@@ -5,6 +5,14 @@ const scoreStore = useScoreStore()
 
 <template>
     <section>
-        <div>{{ scoreStore.score }}</div>
+        <div>Score actuel : {{ scoreStore.score }}</div>
     </section>
 </template>
+
+<style scoped>
+    div {
+        color: white;
+        font-size: 25px;
+    }
+
+</style>
