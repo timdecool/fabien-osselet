@@ -43,7 +43,6 @@ export const useScoreStore = defineStore('score', () => {
     }
 }
 
-
 return { currentRoll, newRoll, addValue, boardValues, score }
 
 })

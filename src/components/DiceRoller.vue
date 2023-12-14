@@ -13,6 +13,7 @@ const scoreStore = useScoreStore()
 <style scoped>
     .dice {
         background-color: white;
+        border-radius: 10px;
         font-size: 30px;
         color: black;
         height: 50px;
