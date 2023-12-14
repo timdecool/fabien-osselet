@@ -40,6 +40,7 @@ export const useScoreStore = defineStore('score', () => {
                 break;
             }
         }
+      newRoll()
     }
 }
 

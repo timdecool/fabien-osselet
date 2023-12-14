@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 import DiceRoller from '@/components/DiceRoller.vue'
 import GameBoard from '@/components/GameBoard.vue'
@@ -14,24 +14,31 @@ function handleReset() {
   currentRoll.value = null
 }
 
+import { useScoreStore } from '@/stores/score.js'
+const scoreStore = useScoreStore()
+
+onMounted(() => {
+    scoreStore.newRoll()
+})
+
 </script>
 
 <template>
   <main>
     <section class="layout">
       <game-board :rollValue="currentRoll" @resetRoll="handleReset"/>
-      <dice-roller @newRoll="handleRoll" />
+      <dice-roller @newRoll="handleRoll" :roll="scoreStore.currentRoll" />
       <div>
-        <p>Player 2</p>
+        <p>Joueur 2</p>
         <score-view />
       </div>
     </section>
     <div class="divider"></div>
     <section class="layout">
       <game-board :rollValue="currentRoll" @resetRoll="handleReset" player="self"/>
-      <dice-roller @newRoll="handleRoll" />
+      <dice-roller @newRoll="handleRoll" :roll="scoreStore.currentRoll"/>
       <div>
-        <p>Player 1</p>
+        <p>Joueur 1</p>
         <score-view />
       </div>
     </section>

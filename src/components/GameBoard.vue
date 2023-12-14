@@ -1,5 +1,6 @@
 <script setup>
 import { useScoreStore } from '@/stores/score.js'
+import DiceRoller from '@/components/DiceRoller.vue'
 const scoreStore = useScoreStore()
 
 const props = defineProps({
@@ -17,7 +18,9 @@ const props = defineProps({
     <section>
         <div v-for="(col, index) of scoreStore.boardValues" :id="`col-${index}`" class="column" :class="player==='self' ? 'reverse':''" @click="scoreStore.addValue(index)">
             <div v-for="(block, idx) of col" :id="`block-${idx}-col-${index}`" class="block">
-                    <span v-if="block !== null">{{ block }}</span>
+                    <span v-if="block !== null">
+                        <dice-roller :roll="block" />                
+                    </span>
             </div> 
         </div>
     </section>
@@ -28,15 +31,12 @@ const props = defineProps({
     section {
         display: flex;
         margin: 10px;
-        padding: 5px;
-        background-color:  rgb(106, 36, 128);
         border-radius: 10px;
         gap: 5px;
     }
     .block {
         width: 60px;
         height: 60px;
-        background-color: white;
         border-radius: 10px;
         color: black;
         font-size: 30px;
@@ -46,10 +46,12 @@ const props = defineProps({
     }
 
     .column {
-        background-color: rgb(106, 36, 128);
+        background-color: rgb(139, 137, 139);
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 7px;
+        padding: 5px;
+        border-radius: 5px;
     }
 
     .reverse {
