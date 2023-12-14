@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 
 export const useScoreStore = defineStore('score', () => {
   // STATES
+
   const currentRoll = ref(null)
   const boardValues = ref([[null,null,null],[null,null,null],[null,null,null]])
 
@@ -25,7 +26,9 @@ export const useScoreStore = defineStore('score', () => {
 
   // ACTIONS
   function newRoll() {
-    currentRoll.value = Math.ceil(Math.random() * 6)
+    if(currentRoll.value === null) {
+      currentRoll.value = Math.ceil(Math.random() * 6)
+    }
   }
 
   function addValue(index) {
